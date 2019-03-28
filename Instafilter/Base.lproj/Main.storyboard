@@ -94,7 +94,6 @@
                     <connections>
                         <outlet property="imageView" destination="E8L-VW-mCe" id="1LM-m6-HBv"/>
                         <outlet property="intensity" destination="1yT-BX-Gca" id="aEu-Lo-2nA"/>
-                        <outlet property="save" destination="3wN-Bu-Uj9" id="xIt-MM-o0B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
