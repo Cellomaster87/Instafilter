@@ -8,15 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: Outlets and Properties
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var intensity: UISlider!
+    var currentImage: UIImage!
     
     // MARK: Views management
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        title = "Instafilter"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
     }
     
     // MARK: Actions
@@ -27,6 +30,20 @@ class ViewController: UIViewController {
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
+    }
+    
+    // MARK: Methods
+    @objc func importPicture() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        dismiss(animated: true)
+        currentImage = image
     }
 }
 
