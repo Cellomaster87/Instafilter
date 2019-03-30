@@ -13,10 +13,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Outlets and Properties
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var intensity: UISlider!
+    @IBOutlet var changeFilter: UIButton!
     var currentImage: UIImage!
     
     var context: CIContext!
-    var currentFilter: CIFilter!
+//    var currentFilter: CIFilter!
+    
+    var currentFilter: CIFilter! {
+        didSet {
+            let name = currentFilter.name.replacingOccurrences(of: "CI", with: "")
+            changeFilter.setTitle(name, for: .normal)
+        }
+    }
     
     // MARK: Views management
     override func viewDidLoad() {
@@ -42,7 +50,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         filterAC.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         
         if let popoverController = filterAC.popoverPresentationController {
-            popoverController.sourceView = sender // optional? Why?
+            popoverController.sourceView = sender
             popoverController.sourceRect = sender.bounds
         }
         
@@ -102,6 +110,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let actionTitle = action.title else { return }
         
         currentFilter = CIFilter(name: actionTitle)
+//        changeFilter.titleLabel?.text = actionTitle
         
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
