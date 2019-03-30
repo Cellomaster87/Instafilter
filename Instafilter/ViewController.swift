@@ -17,14 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var currentImage: UIImage!
     
     var context: CIContext!
-//    var currentFilter: CIFilter!
-    
-    var currentFilter: CIFilter! {
-        didSet {
-            let name = currentFilter.name.replacingOccurrences(of: "CI", with: "")
-            changeFilter.setTitle(name, for: .normal)
-        }
-    }
+    var currentFilter: CIFilter!
     
     // MARK: Views management
     override func viewDidLoad() {
@@ -110,7 +103,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let actionTitle = action.title else { return }
         
         currentFilter = CIFilter(name: actionTitle)
-//        changeFilter.titleLabel?.text = actionTitle
+        changeFilter.titleLabel?.text = actionTitle
         
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
