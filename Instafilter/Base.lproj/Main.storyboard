@@ -49,9 +49,8 @@
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l4S-F2-XVs">
-                                <rect key="frame" x="20" y="798" width="120" height="44"/>
+                                <rect key="frame" x="20" y="798" width="92" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="3GZ-3l-DkP"/>
                                     <constraint firstAttribute="height" constant="44" id="a8S-uc-ADN"/>
                                 </constraints>
                                 <state key="normal" title="Change Filter"/>
