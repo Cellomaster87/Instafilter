@@ -25,6 +25,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         title = "Instafilter"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
+        imageView.alpha = 0
         
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")
@@ -75,7 +76,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
-        dismiss(animated: true)
+        dismiss(animated: true) {
+            UIView.animate(withDuration: 2.0) {
+                self.imageView.alpha = 1
+            }
+        }
         currentImage = image
         
         let beginImage = CIImage(image: currentImage)
